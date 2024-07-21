@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int,int>m;
+        int sum=0;
+        int cnt=0;
+        m[0]=1; // required for correct iteration
+        for(int i=0;i<nums.size();i++){
+            sum+=nums[i];
+            int rem=sum-k; // finding the rem of the sum
+            if(m.find(rem)!=m.end()){   // checking if rem is available in map or not
+                cnt+=m[rem];  // if its there then add the count of the rem 
+            }
+             m[sum]+=1; // add the count of the sum in map
+        }
+        return cnt;
+        
+    }
+};
